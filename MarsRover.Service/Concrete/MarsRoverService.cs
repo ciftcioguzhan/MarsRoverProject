@@ -24,9 +24,8 @@ namespace MarsRover.Service.Concrete
         {
             if (_deserializerHelper == null)
             {
-                throw new ArgumentNullException("explorationPlanDeserializer");
+                throw new ArgumentNullException("discoveryPlanDeserializer");
             }
-
 
 
             DiscoveryPlan discoveryPlan = _deserializerHelper.DeserializeDiscoveryPlan(input);
@@ -37,16 +36,16 @@ namespace MarsRover.Service.Concrete
             return output;
         }
                        
-        public FinalStatus ExecuteDiscoveryPlan(DiscoveryPlan explorationPlan)
+        public FinalStatus ExecuteDiscoveryPlan(DiscoveryPlan discoveryPlan)
         {
             List<IRoverController> roverControllerList = new List<IRoverController>();
 
-            foreach (NavigationPlan roverNavigationPlan in explorationPlan.NavigationPlanList)
+            foreach (NavigationPlan roverNavigationPlan in discoveryPlan.NavigationPlanList)
             {
                 IRoverController roverController = new RoverController();
                 roverControllerList.Add(roverController);
 
-                roverController.NavigationPlan(explorationPlan.Plateau, roverNavigationPlan);
+                roverController.NavigationPlan(discoveryPlan.Plateau, roverNavigationPlan);
             }
 
             FinalStatus finalStatus = new FinalStatus

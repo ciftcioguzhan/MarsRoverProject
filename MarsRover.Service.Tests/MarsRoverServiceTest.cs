@@ -21,25 +21,10 @@ namespace MarsRover.Service.Tests
         }
 
         #region MarsRoverServiceTest
-        [Fact]
-        public void MarsRoverService_ValidStringInput()
-        {
-            string testScenario = "5 5\n" +
-                               "1 2 N\n" +
-                               "LMLMLMLMM\n" +
-                               "3 3 E\n" +
-                               "MMRMMRMRRM\n";
-
-            string expectedOutput = "1 3 N\n" +
-                                    "5 1 E\n";
-
-            string actualOutput = _marsRoverService.ExecuteDiscoveryPlan(testScenario);
-
-            Assert.Equal(expectedOutput, actualOutput);
-        }
+      
 
         [Fact]
-        public void MarsRoverService_ExecuteExplorationPlanWithInvalid()
+        public void MarsRoverService_ExecuteDiscoveryPlanWithInvalid()
         {
             string testInput = "5 5\n" +
                                "1 2 N\n" +
@@ -51,7 +36,7 @@ namespace MarsRover.Service.Tests
         }
 
         [Fact]
-        public void MarsRoverService_ValidExplorationPlanInput()
+        public void MarsRoverService_ValidDiscoveryPlanInput()
         {
             DiscoveryPlan discoveryPlan = new DiscoveryPlan
             {
@@ -117,32 +102,32 @@ namespace MarsRover.Service.Tests
   
         #endregion
 
-        #region ExplorationPlanDeserializerTest
+        #region DiscoveryPlanDeserializerTest
+        //[Fact]
+        //public void DiscoveryPlanDeserializer_InputCountException()
+        //{
+        //    string testInput = "5 5\n" +
+        //                       "1 2 N\n" +
+        //                       "LMLMLMLMM\n" +
+        //                       "3 3 E\n";
+
+        //    Assert.Throws<Exception>(() => { DiscoveryPlan discoveryPlan = _deserializerHelper.DeserializeDiscoveryPlan(testInput); });
+        //}
+
+        //[Fact]
+        //public void DiscoveryPlanDeserializer_InputInvalidPlateauException()
+        //{
+        //    string testInput = "5 E\n" +
+        //                       "1 2 N\n" +
+        //                       "LMLMLMLMM\n" +
+        //                       "3 3 E\n" +
+        //                       "MMRMMRMRRM\n";
+
+        //    Assert.Throws<Exception>(() => { DiscoveryPlan discoveryPlan = _deserializerHelper.DeserializeDiscoveryPlan(testInput); });
+        //}
+
         [Fact]
-        public void ExplorationPlanDeserializer_InputCountException()
-        {
-            string testInput = "5 5\n" +
-                               "1 2 N\n" +
-                               "LMLMLMLMM\n" +
-                               "3 3 E\n";
-
-            Assert.Throws<Exception>(() => { DiscoveryPlan discoveryPlan = _deserializerHelper.DeserializeDiscoveryPlan(testInput); });
-        }
-
-        [Fact]
-        public void ExplorationPlanDeserializer_InputInvalidPlateauException()
-        {
-            string testInput = "5 E\n" +
-                               "1 2 N\n" +
-                               "LMLMLMLMM\n" +
-                               "3 3 E\n" +
-                               "MMRMMRMRRM\n";
-
-            Assert.Throws<Exception>(() => { DiscoveryPlan discoveryPlan = _deserializerHelper.DeserializeDiscoveryPlan(testInput); });
-        }
-
-        [Fact]
-        public void ExplorationPlanDeserializer_PositionLineException()
+        public void DiscoveryPlanDeserializer_PositionLineException()
         {
             string testInput = "5 5\n" +
                                "1 2 X\n" +
